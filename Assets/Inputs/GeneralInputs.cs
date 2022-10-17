@@ -149,6 +149,34 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Actions"",
+            ""id"": ""3dca6211-191c-49d3-884b-bc8d633b0223"",
+            ""actions"": [
+                {
+                    ""name"": ""SwitchingCameras"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d12d39b-0036-427d-b975-d536a944ff6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cc0cc27f-c7c1-49fa-a90b-7e9bdb9659d5"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchingCameras"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -156,6 +184,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         // PlayableCharacterInputs
         m_PlayableCharacterInputs = asset.FindActionMap("PlayableCharacterInputs", throwIfNotFound: true);
         m_PlayableCharacterInputs_Movement = m_PlayableCharacterInputs.FindAction("Movement", throwIfNotFound: true);
+        // Actions
+        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_SwitchingCameras = m_Actions.FindAction("SwitchingCameras", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,8 +275,45 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         }
     }
     public PlayableCharacterInputsActions @PlayableCharacterInputs => new PlayableCharacterInputsActions(this);
+
+    // Actions
+    private readonly InputActionMap m_Actions;
+    private IActionsActions m_ActionsActionsCallbackInterface;
+    private readonly InputAction m_Actions_SwitchingCameras;
+    public struct ActionsActions
+    {
+        private @GeneralInputs m_Wrapper;
+        public ActionsActions(@GeneralInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SwitchingCameras => m_Wrapper.m_Actions_SwitchingCameras;
+        public InputActionMap Get() { return m_Wrapper.m_Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IActionsActions instance)
+        {
+            if (m_Wrapper.m_ActionsActionsCallbackInterface != null)
+            {
+                @SwitchingCameras.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchingCameras;
+                @SwitchingCameras.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchingCameras;
+                @SwitchingCameras.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchingCameras;
+            }
+            m_Wrapper.m_ActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SwitchingCameras.started += instance.OnSwitchingCameras;
+                @SwitchingCameras.performed += instance.OnSwitchingCameras;
+                @SwitchingCameras.canceled += instance.OnSwitchingCameras;
+            }
+        }
+    }
+    public ActionsActions @Actions => new ActionsActions(this);
     public interface IPlayableCharacterInputsActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IActionsActions
+    {
+        void OnSwitchingCameras(InputAction.CallbackContext context);
     }
 }
