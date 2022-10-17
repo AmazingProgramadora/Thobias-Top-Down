@@ -16,7 +16,7 @@ public class Laser_Redirect : MonoBehaviour
     {
         if (!shooting)
         {
-            DrawRay(Vector2.zero, Vector2.zero);
+            lineRenderer.enabled = false;
         }
         shooting = false;
 
@@ -27,6 +27,7 @@ public class Laser_Redirect : MonoBehaviour
         firePoint.position = position + new Vector2(-0.01f,-0.01f);
         ShootLaser();
         shooting = true;
+        lineRenderer.enabled = true;
     }
     void ShootLaser()
     {

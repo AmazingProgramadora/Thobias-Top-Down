@@ -8,6 +8,8 @@ public class Laser_Shooter : MonoBehaviour
     [SerializeField] float maxRayDistance = 100;
     public Transform firePoint;
     public LineRenderer lineRenderer;
+
+    Laser_Redirect laser_Redirect;
     #endregion
 
 
@@ -21,7 +23,7 @@ public class Laser_Shooter : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right);
             DrawRay(firePoint.position, hit.point);
-            Laser_Redirect laser_Redirect = hit.collider.GetComponent<Laser_Redirect>();
+            laser_Redirect = hit.collider.GetComponent<Laser_Redirect>();
 
             if (laser_Redirect != null)
             {
