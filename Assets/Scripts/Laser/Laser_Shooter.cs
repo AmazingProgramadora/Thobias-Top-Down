@@ -10,6 +10,7 @@ public class Laser_Shooter : MonoBehaviour
     public LineRenderer lineRenderer;
 
     Laser_Redirect laser_Redirect;
+    Laser_End laser_End;
     #endregion
 
 
@@ -17,22 +18,38 @@ public class Laser_Shooter : MonoBehaviour
     {
         ShootLaser();
     }
+    #region LASER
     void ShootLaser()
     {
-       if(Physics2D.Raycast(transform.position, transform.right))
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right);
+
+        DrawRay(firePoint.position, hit.point);
+
+        if (hit.collider && hit.collider.CompareTag("Mirror"))
         {
-            RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right);
-            DrawRay(firePoint.position, hit.point);
-            laser_Redirect = hit.collider.GetComponent<Laser_Redirect>();
 
             if (laser_Redirect != null)
             {
-                laser_Redirect.ChangeFirePoint(hit.point);
+                laser_Redirect.ChangeFirePoint(hit.point, hit.normal, transform.position);
+            }
+            else
+            {
+                    laser_Redirect = hit.collider.GetComponent<Laser_Redirect>();
             }
         }
         else
         {
-            DrawRay(firePoint.position, firePoint.right * maxRayDistance);
+            if (hit.collider.CompareTag("Laser End"))
+            {
+                laser_End = hit.collider.GetComponent<Laser_End>();
+                laser_End.Activate();
+            }
+
+            DrawRay(firePoint.position, hit.point);
+            if (laser_Redirect)
+            {
+                laser_Redirect = null;
+            }
         }
     }
 
@@ -41,4 +58,5 @@ public class Laser_Shooter : MonoBehaviour
         lineRenderer.SetPosition(0, startPos);
         lineRenderer.SetPosition(1, endPos);
     }
+    #endregion
 }
