@@ -19,6 +19,10 @@ public class PlayableCharacter : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
+        {
+            enabled = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -32,16 +36,24 @@ public class PlayableCharacter : MonoBehaviour
         {
             print("A");
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
-            //this.enabled = false;
         }
     }
     private void ChangePlayer(int playerIndex)
     {
+        ManagerPlayer.Instance.activePlayer = playerIndex;
+        PlayableCharacter novoPlayerAtivo = ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer];
 
         CinemachineBrain cinemachineBrain = cam.GetComponent<CinemachineBrain>();
+        cinemachineBrain.ActiveVirtualCamera.Follow = null;
+        cinemachineBrain.ActiveVirtualCamera.LookAt = null;     
+        cam.transform.position = novoPlayerAtivo.transform.position;
+    
 
-       // cinemachineBrain.ActiveVirtualCamera.Follow = 
-       // cinemachineBrain.ActiveVirtualCamera.LookAt =
+        cinemachineBrain.ActiveVirtualCamera.Follow = ManagerPlayer.Instance.playerCharacters[playerIndex].transform;
+        cinemachineBrain.ActiveVirtualCamera.LookAt = ManagerPlayer.Instance.playerCharacters[playerIndex].transform;
+
+        novoPlayerAtivo.enabled = true;
+        enabled = false;
     }
     private void OnEnable()
     {
