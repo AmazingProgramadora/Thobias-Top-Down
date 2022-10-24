@@ -21,68 +21,15 @@ public class Door : MonoBehaviour
     }
     void Update()
     {
-        OpenDoor();
+
     }
     void Start()
     {
         anima = GetComponent<Animator>();
     }
 
-
     public void OpenDoor()
     {
-        if (checkForKey && keyOpenDoor)
-        {
-            if (checkForButton)
-            {
-                button.enableButtonCollision = true;
-            }
-            else if (checkForButton == false)
-                StartCoroutine(OpenTheSesame());
-        }
-
-        if (checkForKey == false)
-        {
-            if (checkForButton)
-            {
-                button.enableButtonCollision = true;
-            }
-            else if (checkForButton == false)
-            {
-                StartCoroutine(OpenTheSesame());
-            }
-        }
-
-        if (checkForKey && keyOpenDoor == false)
-        {
-            if (checkForButton)
-            {
-                button.enableButtonCollision = true;
-            }
-            else if (checkForButton == false)
-                StartCoroutine(OpenTheSesame());
-        }
-
-        if (checkForButton && checkForKey == false)
-        {
-            button.enableButtonCollision = true;
-        }
-
-        if (whichButton != null)
-        {
-            if (button.enableButtonCollision && button.GetComponent<Animator>().GetBool("ButtonDownAnimator"))
-                buttonOpenDoor = true;
-        }
-
-        if (buttonOpenDoor == true)
-            StartCoroutine(OpenTheSesame());
-
-    }
-
-    public IEnumerator OpenTheSesame()
-    {
-        anima.SetBool("DoorOpenAnimator", true);
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        print("A");
     }
 }
