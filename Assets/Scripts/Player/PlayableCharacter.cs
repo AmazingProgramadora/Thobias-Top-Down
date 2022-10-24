@@ -40,17 +40,22 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void ChangePlayer(int playerIndex)
     {
+        StartCoroutine(ChangePlayerCoroutine(ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].transform, playerIndex));
+    }
+    IEnumerator ChangePlayerCoroutine(Transform newTarget, int playerIndex)
+    {
         ManagerPlayer.Instance.activePlayer = playerIndex;
         PlayableCharacter novoPlayerAtivo = ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer];
 
-        CinemachineBrain cinemachineBrain = cam.GetComponent<CinemachineBrain>();
-        cinemachineBrain.ActiveVirtualCamera.Follow = null;
-        cinemachineBrain.ActiveVirtualCamera.LookAt = null;     
-        cam.transform.position = novoPlayerAtivo.transform.position;
-    
+        CinemachineVirtualCamera vCam = cam.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        vCam.enabled = false;
 
-        cinemachineBrain.ActiveVirtualCamera.Follow = ManagerPlayer.Instance.playerCharacters[playerIndex].transform;
-        cinemachineBrain.ActiveVirtualCamera.LookAt = ManagerPlayer.Instance.playerCharacters[playerIndex].transform;
+        cam.transform.position = newTarget.position;
+        yield return null; //dá delay de 1 frame
+        vCam.Follow = newTarget;
+        vCam.LookAt = newTarget;
+
+        vCam.enabled = true;
 
         novoPlayerAtivo.enabled = true;
         enabled = false;
