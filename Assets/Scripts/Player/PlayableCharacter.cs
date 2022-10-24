@@ -40,7 +40,7 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void ChangePlayer(int playerIndex)
     {
-        StartCoroutine(ChangePlayerCoroutine(ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].transform, playerIndex));
+        StartCoroutine(ChangePlayerCoroutine(ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.GetInactivePlayerIndex()].transform, playerIndex));
     }
     IEnumerator ChangePlayerCoroutine(Transform newTarget, int playerIndex)
     {
