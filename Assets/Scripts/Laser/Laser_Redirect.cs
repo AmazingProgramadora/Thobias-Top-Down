@@ -40,9 +40,12 @@ public class Laser_Redirect : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        firePoint.position = position + normal * 0.01f;
+        Vector2 directiona = (position - origin).normalized;
+        directiona=directiona.Snap();
 
-        StartCoroutine(ShootLaser(normal, position - origin));
+        firePoint.position = position;
+
+        StartCoroutine(ShootLaser(normal, directiona));
         shooting = true;
         lineRenderer.enabled = true;
 
@@ -61,8 +64,10 @@ public class Laser_Redirect : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
+        Vector2 reflectDirection = Vector2.Reflect(dir, normal);
+        //Vector2 reflectDirection = ReflectDirection(dir, normal);
 
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, Vector2.Reflect(dir, normal));
+        RaycastHit2D hit = Physics2D.Raycast( (Vector2)firePoint.position + (reflectDirection) , reflectDirection);
 
         DrawRay(firePoint.position, hit.point);
 
@@ -71,7 +76,7 @@ public class Laser_Redirect : MonoBehaviour
 
             if (laser_Redirect != null)
             {
-                laser_Redirect.ChangeFirePoint(hit.point, hit.normal, transform.position);
+                laser_Redirect.ChangeFirePoint(hit.point, hit.normal, firePoint.position);
 
             }
             else
@@ -102,4 +107,6 @@ public class Laser_Redirect : MonoBehaviour
         lineRenderer.SetPosition(1, endPos);
     }
     #endregion
+
+
 }
