@@ -35,6 +35,15 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ee863cd-28fc-42d8-9d15-c028d416a744"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +156,17 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34e399cc-8844-414b-b1cc-c7288a27219e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -184,6 +204,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         // PlayableCharacterInputs
         m_PlayableCharacterInputs = asset.FindActionMap("PlayableCharacterInputs", throwIfNotFound: true);
         m_PlayableCharacterInputs_Movement = m_PlayableCharacterInputs.FindAction("Movement", throwIfNotFound: true);
+        m_PlayableCharacterInputs_Grab = m_PlayableCharacterInputs.FindAction("Grab", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_SwitchingCameras = m_Actions.FindAction("SwitchingCameras", throwIfNotFound: true);
@@ -247,11 +268,13 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayableCharacterInputs;
     private IPlayableCharacterInputsActions m_PlayableCharacterInputsActionsCallbackInterface;
     private readonly InputAction m_PlayableCharacterInputs_Movement;
+    private readonly InputAction m_PlayableCharacterInputs_Grab;
     public struct PlayableCharacterInputsActions
     {
         private @GeneralInputs m_Wrapper;
         public PlayableCharacterInputsActions(@GeneralInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayableCharacterInputs_Movement;
+        public InputAction @Grab => m_Wrapper.m_PlayableCharacterInputs_Grab;
         public InputActionMap Get() { return m_Wrapper.m_PlayableCharacterInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +287,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnMovement;
+                @Grab.started -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnGrab;
             }
             m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface = instance;
             if (instance != null)
@@ -271,6 +297,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
             }
         }
     }
@@ -311,6 +340,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
     public interface IPlayableCharacterInputsActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
     public interface IActionsActions
     {

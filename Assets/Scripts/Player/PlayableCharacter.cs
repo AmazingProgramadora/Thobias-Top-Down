@@ -11,6 +11,8 @@ public class PlayableCharacter : MonoBehaviour
     Rigidbody2D rdbd;
     Vector2 movementInputs;
     public float movementSpeed;
+    Rigidbody2D boxRdbd;
+    FixedJoint2D boxJoint;
     private void Awake()
     {
         generalInputs = new GeneralInputs();
@@ -36,6 +38,29 @@ public class PlayableCharacter : MonoBehaviour
         {
             print("A");
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
+        }
+        if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        {
+            MoveBox();
+        }
+        else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
+        {
+            boxRdbd.velocity = Vector2.zero;
+            boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+            boxJoint.enabled = false;
+            boxJoint.connectedBody = null;
+            boxRdbd = null;
+            boxJoint = null;
+        }
+    }
+
+    void MoveBox()
+    {
+        if(boxRdbd != null)
+        {
+            boxRdbd.bodyType = RigidbodyType2D.Dynamic;
+            boxJoint.enabled = true;
+            boxJoint.connectedBody = rdbd;
         }
     }
     private void ChangePlayer(int playerIndex)
@@ -68,5 +93,13 @@ public class PlayableCharacter : MonoBehaviour
     private void OnDisable()
     {
         generalInputs.Disable();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Box"))
+        {
+            boxRdbd = collision.gameObject.GetComponent<Rigidbody2D>();
+            boxJoint = collision.gameObject.GetComponent<FixedJoint2D>();
+        }
     }
 }
