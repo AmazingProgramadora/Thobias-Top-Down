@@ -45,18 +45,21 @@ public class PlayableCharacter : MonoBehaviour
         }
         else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
         {
-            boxRdbd.velocity = Vector2.zero;
-            boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-            boxJoint.enabled = false;
-            boxJoint.connectedBody = null;
-            boxRdbd = null;
-            boxJoint = null;
+            if (boxRdbd != null)
+            {
+                boxRdbd.velocity = Vector2.zero;
+                boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+                boxJoint.enabled = false;
+                boxJoint.connectedBody = null;
+                boxRdbd = null;
+                boxJoint = null;
+            }
         }
     }
 
     void MoveBox()
     {
-        if(boxRdbd != null)
+        if (boxRdbd != null)
         {
             boxRdbd.bodyType = RigidbodyType2D.Dynamic;
             boxJoint.enabled = true;
@@ -76,7 +79,7 @@ public class PlayableCharacter : MonoBehaviour
         vCam.enabled = false;
 
         cam.transform.position = newTarget.position;
-        yield return null; //d· delay de 1 frame
+        yield return null; //d√° delay de 1 frame
         vCam.Follow = newTarget;
         vCam.LookAt = newTarget;
 
@@ -96,10 +99,25 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.CompareTag("Box"))
         {
             boxRdbd = collision.gameObject.GetComponent<Rigidbody2D>();
             boxJoint = collision.gameObject.GetComponent<FixedJoint2D>();
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Box") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        {
+            boxRdbd.velocity = Vector2.zero;
+            boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+            boxJoint.enabled = false;
+            boxJoint.connectedBody = null;
+            boxRdbd = null;
+            boxJoint = null;
+        }
+
+
     }
 }
