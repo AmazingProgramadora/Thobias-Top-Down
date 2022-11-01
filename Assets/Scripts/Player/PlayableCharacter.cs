@@ -99,7 +99,7 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror"))
         {
             boxRdbd = collision.gameObject.GetComponent<Rigidbody2D>();
             boxJoint = collision.gameObject.GetComponent<FixedJoint2D>();
@@ -108,7 +108,7 @@ public class PlayableCharacter : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
         {
             boxRdbd.velocity = Vector2.zero;
             boxRdbd.bodyType = RigidbodyType2D.Kinematic;

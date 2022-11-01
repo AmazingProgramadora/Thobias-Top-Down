@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 1061681164397477532}
   - component: {fileID: 122182056}
   - component: {fileID: 122182055}
+  - component: {fileID: 6762775427099869451}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Mirror
@@ -363,7 +364,7 @@ CompositeCollider2D:
   - m_Collider: {fileID: 77198573}
     m_ColliderPaths:
     - - X: 4460311
-        Y: -7380340
+        Y: -7380339
       - X: 4910859
         Y: -6929791
       - X: -4456750
@@ -395,12 +396,30 @@ CompositeCollider2D:
       - {x: -0.4814667, y: 0.7369502}
       - {x: -0.48800302, y: 0.4459792}
       - {x: -0.48665512, y: 0.3434003}
-    - - {x: 0.4460104, y: -0.7380133}
+    - - {x: 0.4460104, y: -0.7380132}
       - {x: 0.4910652, y: -0.6929584}
       - {x: -0.4456957, y: 0.24371961}
       - {x: -0.49066782, y: 0.1986648}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!255 &6762775427099869451
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061681164397477533}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -3.15, y: -0.48}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1061681164814219131
 GameObject:
   m_ObjectHideFlags: 0

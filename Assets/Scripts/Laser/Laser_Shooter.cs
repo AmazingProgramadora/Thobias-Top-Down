@@ -5,7 +5,6 @@ using UnityEngine;
 public class Laser_Shooter : MonoBehaviour
 {
     #region Declarations
-    [SerializeField] float maxRayDistance = 100;
     public Transform firePoint;
     public LineRenderer lineRenderer;
 

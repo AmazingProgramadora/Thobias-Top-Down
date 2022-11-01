@@ -23,10 +23,22 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Box"))
         {
             anima.SetBool("ButtonDownAnimator", true);
-            GetComponent<Collider2D>().enabled = false;
+
+            if(door != null)
+            door.OpenDoor();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Box"))
+        {
+            anima.SetBool("ButtonDownAnimator", false);
+
+            if(door != null)
             door.OpenDoor();
         }
     }
