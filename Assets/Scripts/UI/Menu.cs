@@ -9,13 +9,14 @@ public class Menu : MonoBehaviour
 
     public void RunScene()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(levelToLoad);
     }
 
     public void ExitToDesktop()
     {
         Application.Quit();
-        print("closed the game");
+        print("The game was closed");
     }
 
 }
