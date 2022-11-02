@@ -21,6 +21,7 @@ public class Pause : MonoBehaviour
         {
             PauseFunction();
         }
+
         else if (generalInputs.Actions.Pause.triggered && pausePanel.activeSelf == true)
         {
             ResumeFunction();
