@@ -34,12 +34,6 @@ public class PlayableCharacter : MonoBehaviour
 
     void Update()
     {
-        if (generalInputs.Actions.Pause.triggered)
-        {
-            print("Yay");
-            // Pause.PauseFunction(); //PEGAR ESSE COMPONENTE DO OUTRO SCRIPT
-        }
-
         if (generalInputs.Actions.SwitchingCameras.triggered)
         {
             print("Switched player");
