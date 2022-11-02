@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     [SerializeField]
-    GameObject pausePanel;
+    GameObject pausePanel, optionsPanel;
     GeneralInputs generalInputs;
 
     private void Awake()
@@ -42,6 +42,17 @@ public class Pause : MonoBehaviour
         print("Resume");
         pausePanel.SetActive(false);
         Time.timeScale = 1f; //isso faz com que o tempo do jogo ocorra normalmente
+    }
+    public void OptionsFunction()
+    {
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+
+    public void OptionsBackFunction()
+    {
+        pausePanel.SetActive(true);
+        optionsPanel.SetActive(false);
     }
 
     private void OnEnable()
