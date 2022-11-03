@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Sounds : MonoBehaviour
 {
-    [SerializeField]
-    AudioClip interactSound;
     GeneralInputs generalInputs;
     AudioSource audioSource;
 
@@ -25,12 +23,6 @@ public class Sounds : MonoBehaviour
         else
         {
             audioSource.Stop(); //entender pq nao esta parando quando o player esta andando e da pausa
-        }
-
-        if (generalInputs.PlayableCharacterInputs.Interact.triggered)
-        {
-            print("yay");
-            audioSource.PlayOneShot(interactSound);
         }
     }
 

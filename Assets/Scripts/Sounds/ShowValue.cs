@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class ShowValue : MonoBehaviour
 {
-    public Slider mainSlider;
-    public GameObject textValue;
+    Text textComponent;
 
-    //Invoked when a submit button is clicked.
-    void Update()
+    void Start()
     {
-        //textValue.GetComponent<TextMeshPro>().text = mainSlider.value;
+        textComponent = GetComponent<Text>();
+    }
+
+    public void SetSliderValue(float sliderValue)
+    {
+        textComponent.text = Mathf.Round(sliderValue + 80).ToString();
+        //textComponent.text = Mathf.RoundToInt(sliderValue + 80) + "%";
     }
 }

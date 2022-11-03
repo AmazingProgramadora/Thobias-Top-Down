@@ -13,10 +13,14 @@ public class PlayableCharacter : MonoBehaviour
     public float movementSpeed;
     Rigidbody2D boxRdbd;
     FixedJoint2D boxJoint;
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip interactSound;
     private void Awake()
     {
         generalInputs = new GeneralInputs();
         rdbd = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -34,7 +38,13 @@ public class PlayableCharacter : MonoBehaviour
 
     void Update()
     {
-        if (generalInputs.Actions.SwitchingCameras.triggered)
+        if (generalInputs.PlayableCharacterInputs.Interact.triggered)
+        {
+            print("yay");
+            audioSource.PlayOneShot(interactSound);
+        }
+
+            if (generalInputs.Actions.SwitchingCameras.triggered)
         {
             print("Switched player");
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
