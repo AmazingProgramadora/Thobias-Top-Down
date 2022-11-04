@@ -8,7 +8,7 @@ public class Button : MonoBehaviour
     [NonSerialized] public bool enableButtonCollision;
     Animator anima;
     Door door;
-    public GameObject thisDoor;
+    [SerializeField] GameObject thisDoor;
 
     void Awake()
     {
@@ -36,10 +36,11 @@ public class Button : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            anima.SetBool("ButtonDownAnimator", false);
 
+            anima.SetBool("ButtonDownAnimator", false);
+            
             if(door != null)
-            door.OpenDoor();
+                door.CloseDoor();
         }
     }
 }

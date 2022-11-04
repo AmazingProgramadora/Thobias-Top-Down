@@ -8,17 +8,22 @@ public class Laser_End : MonoBehaviour
     float timeToOff;
     float currentTimeOff;
 
-    public GameObject door;
+    [SerializeField] GameObject this_Door;
+    Door door;
 
     private void Start()
     {
+        door = this_Door.GetComponent<Door>();
         timeToOff = 0.1f;
     }
     private void Update()
     {
         currentTimeOff += Time.deltaTime;
-        if(currentTimeOff>timeToOff)
+        if (currentTimeOff > timeToOff && on)
+        {
             on = false;
+            Deactivate();
+        }
     }
     public void Activate()
     {
@@ -26,10 +31,15 @@ public class Laser_End : MonoBehaviour
         if (!on)
         {
             if(door != null)
-            door.GetComponent<Door>().OpenDoor();
+            door.OpenDoor();
             //Inserir aqui o que deveria acontecer quando acertar os lasers
             on = true;
         }
+    }
+
+    void Deactivate()
+    {
+        door.CloseDoor();
     }
 
 }

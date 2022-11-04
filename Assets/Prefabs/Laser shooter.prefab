@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5525390586935263181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.21, y: 19.76, z: 0}
+  m_LocalPosition: {x: -9.12, y: 2.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5525390587263753408}
@@ -227,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf85cf27cef8b5b49be22e3a8edb54d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRayDistance: 100
   firePoint: {fileID: 5525390587686542662}
   lineRenderer: {fileID: 5525390586935263179}
 --- !u!61 &1463726887

@@ -40,13 +40,11 @@ public class PlayableCharacter : MonoBehaviour
     {
         if (generalInputs.PlayableCharacterInputs.Interact.triggered)
         {
-            print("yay");
             audioSource.PlayOneShot(interactSound);
         }
 
             if (generalInputs.Actions.SwitchingCameras.triggered)
         {
-            print("Switched player");
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
         }
         if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
@@ -120,12 +118,15 @@ public class PlayableCharacter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
         {
-            boxRdbd.velocity = Vector2.zero;
-            boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-            boxJoint.enabled = false;
-            boxJoint.connectedBody = null;
-            boxRdbd = null;
-            boxJoint = null;
+            if (boxRdbd != null && boxJoint != null)
+            {
+                boxRdbd.velocity = Vector2.zero;
+                boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+                boxJoint.enabled = false;
+                boxJoint.connectedBody = null;
+                boxRdbd = null;
+                boxJoint = null;
+            }
         }
 
 
