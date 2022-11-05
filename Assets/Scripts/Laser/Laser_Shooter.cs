@@ -10,6 +10,7 @@ public class Laser_Shooter : MonoBehaviour
 
     Laser_Redirect laser_Redirect;
     Laser_End laser_End;
+    public PlayableCharacter player;
     #endregion
 
 
@@ -36,13 +37,10 @@ public class Laser_Shooter : MonoBehaviour
                     laser_Redirect = hit.collider.GetComponent<Laser_Redirect>();
             }
         }
-        else
+        else if (hit.collider.CompareTag("Laser End"))
         {
-            if (hit.collider.CompareTag("Laser End"))
-            {
-                laser_End = hit.collider.GetComponent<Laser_End>();
-                laser_End.Activate();
-            }
+            laser_End = hit.collider.GetComponent<Laser_End>();
+            laser_End.Activate();
 
             DrawRay(firePoint.position, hit.point);
             if (laser_Redirect)
@@ -50,6 +48,11 @@ public class Laser_Shooter : MonoBehaviour
                 laser_Redirect = null;
             }
         }
+        else if (hit.collider && hit.collider.CompareTag("Player"))
+        {
+            player.TakeDamage(20);
+        }
+
     }
 
     void DrawRay(Vector2 startPos, Vector2 endPos)

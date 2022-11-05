@@ -402,11 +402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5032281757443708194, guid: 4b053364485dfca4d8733809d68ad06c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5032281757443708194, guid: 4b053364485dfca4d8733809d68ad06c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.56
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 5032281757443708194, guid: 4b053364485dfca4d8733809d68ad06c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38309,11 +38309,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4926995652749340272, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.899998
+      value: 38.6
       objectReference: {fileID: 0}
     - target: {fileID: 4926995652749340272, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -32.18
+      value: -44.390003
       objectReference: {fileID: 0}
     - target: {fileID: 4926995652749340279, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_Follow
@@ -38325,11 +38325,11 @@ PrefabInstance:
       objectReference: {fileID: 124321979}
     - target: {fileID: 4926995652976264260, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.899998
+      value: 38.6
       objectReference: {fileID: 0}
     - target: {fileID: 4926995652976264260, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -32.18
+      value: -44.390003
       objectReference: {fileID: 0}
     - target: {fileID: 4926995653867937192, guid: 018c526a24cf2d443b67ec24e79fa2b0, type: 3}
       propertyPath: m_RootOrder
@@ -44029,6 +44029,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5525390587263753410, guid: 6fbfb8fee4336a341a875463cf074279, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 124321975}
     - target: {fileID: 5525390587263753412, guid: 6fbfb8fee4336a341a875463cf074279, type: 3}
       propertyPath: m_Name
       value: Laser shooter
