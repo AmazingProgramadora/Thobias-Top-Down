@@ -53,6 +53,15 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeDamage"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bd07ee3-563d-4539-8005-11e07f932694"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,17 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce73b90f-d751-478a-bd1a-c83654b8772e"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeDamage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -246,6 +266,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         m_PlayableCharacterInputs_Movement = m_PlayableCharacterInputs.FindAction("Movement", throwIfNotFound: true);
         m_PlayableCharacterInputs_Grab = m_PlayableCharacterInputs.FindAction("Grab", throwIfNotFound: true);
         m_PlayableCharacterInputs_Interact = m_PlayableCharacterInputs.FindAction("Interact", throwIfNotFound: true);
+        m_PlayableCharacterInputs_TakeDamage = m_PlayableCharacterInputs.FindAction("TakeDamage", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_SwitchingCameras = m_Actions.FindAction("SwitchingCameras", throwIfNotFound: true);
@@ -312,6 +333,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayableCharacterInputs_Movement;
     private readonly InputAction m_PlayableCharacterInputs_Grab;
     private readonly InputAction m_PlayableCharacterInputs_Interact;
+    private readonly InputAction m_PlayableCharacterInputs_TakeDamage;
     public struct PlayableCharacterInputsActions
     {
         private @GeneralInputs m_Wrapper;
@@ -319,6 +341,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayableCharacterInputs_Movement;
         public InputAction @Grab => m_Wrapper.m_PlayableCharacterInputs_Grab;
         public InputAction @Interact => m_Wrapper.m_PlayableCharacterInputs_Interact;
+        public InputAction @TakeDamage => m_Wrapper.m_PlayableCharacterInputs_TakeDamage;
         public InputActionMap Get() { return m_Wrapper.m_PlayableCharacterInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -337,6 +360,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnInteract;
+                @TakeDamage.started -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnTakeDamage;
+                @TakeDamage.performed -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnTakeDamage;
+                @TakeDamage.canceled -= m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface.OnTakeDamage;
             }
             m_Wrapper.m_PlayableCharacterInputsActionsCallbackInterface = instance;
             if (instance != null)
@@ -350,6 +376,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @TakeDamage.started += instance.OnTakeDamage;
+                @TakeDamage.performed += instance.OnTakeDamage;
+                @TakeDamage.canceled += instance.OnTakeDamage;
             }
         }
     }
@@ -400,6 +429,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnTakeDamage(InputAction.CallbackContext context);
     }
     public interface IActionsActions
     {

@@ -16,6 +16,9 @@ public class PlayableCharacter : MonoBehaviour
     AudioSource audioSource;
     [SerializeField]
     AudioClip interactSound;
+    public int maxHelath = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
     private void Awake()
     {
         generalInputs = new GeneralInputs();
@@ -24,6 +27,9 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void Start()
     {
+        currentHealth = maxHelath;
+        healthBar.SetMaxHealth(maxHelath);
+        
         cam = Camera.main;
         if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
         {
@@ -63,6 +69,18 @@ public class PlayableCharacter : MonoBehaviour
                 boxJoint = null;
             }
         }
+
+        if (generalInputs.PlayableCharacterInputs.TakeDamage.WasReleasedThisFrame())
+        {
+            TakeDamage(20);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 
     void MoveBox()
