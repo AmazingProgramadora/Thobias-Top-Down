@@ -28,7 +28,7 @@ public class PlayableCharacter : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHelath;
-        healthBar.SetMaxHealth(maxHelath);
+        //healthBar.SetMaxHealth(maxHelath);
         
         cam = Camera.main;
         if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
