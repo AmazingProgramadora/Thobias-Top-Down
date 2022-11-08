@@ -5,15 +5,21 @@ using UnityEngine;
 public class Laser_Redirect : MonoBehaviour
 {
     #region Declarations
-    public Transform firePoint;
+    private Transform firePoint;
     public LineRenderer lineRenderer;
 
     Laser_Redirect laser_Redirect;
     Laser_End laser_End;
     bool shooting;
-    public PlayableCharacter player;
+    //public PlayableCharacter player;
     #endregion
 
+
+    private void Start()
+    {
+        //firePoint = transform.Find("redirectPoint");
+        firePoint = transform.GetChild(0);
+    }
     private void Update()
     {
         if (!shooting)
@@ -44,7 +50,11 @@ public class Laser_Redirect : MonoBehaviour
         Vector2 directiona = (position - origin).normalized;
         directiona=directiona.Snap();
 
-        firePoint.position = position;
+        if (!shooting)
+        {
+            firePoint.position = position;
+            print( gameObject.name +": " + firePoint.position);
+        }
 
         StartCoroutine(ShootLaser(normal, directiona));
         shooting = true;
@@ -71,7 +81,7 @@ public class Laser_Redirect : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast( (Vector2)firePoint.position + (reflectDirection) , reflectDirection);
 
         DrawRay(firePoint.position, hit.point);
-
+        
         if (hit.collider.CompareTag("Mirror") && hit.collider != null)
         {
 
@@ -97,10 +107,10 @@ public class Laser_Redirect : MonoBehaviour
                 laser_Redirect = null;
             }
         }
-        else if (hit.collider && hit.collider.CompareTag("Player"))
+        /*else if (hit.collider && hit.collider.CompareTag("Player"))
         {
-            player.TakeDamage(20);
-        }
+           // player.TakeDamage(20);
+        }*/
     }
 
     void DrawRay(Vector2 startPos, Vector2 endPos)

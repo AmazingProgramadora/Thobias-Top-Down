@@ -50,7 +50,7 @@ public class Laser_Shooter : MonoBehaviour
         }
         else if (hit.collider && hit.collider.CompareTag("Player"))
         {
-            player.TakeDamage(20);
+            //player.TakeDamage(20);
         }
 
     }
