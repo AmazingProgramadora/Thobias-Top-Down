@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    Animator anima;
     Collider2D door_Collider;
 
     void Awake()
     {
         door_Collider = GetComponent<Collider2D>();
     }
-    void Update()
-    {
 
-    }
     void Start()
+    {
+        anima = GetComponent<Animator>();
+    }
+    void Update()
     {
 
     }
@@ -24,12 +25,14 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         //Door Opens here
+        anima.SetBool("IsOpen", true);
         door_Collider.enabled = false;
     }
 
     public void CloseDoor()
     {
         //Door closes here
+        anima.SetBool("IsOpen", false);
         door_Collider.enabled = true;
     }
 }
