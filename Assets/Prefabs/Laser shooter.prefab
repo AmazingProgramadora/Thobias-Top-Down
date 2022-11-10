@@ -229,6 +229,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5525390587686542662}
   lineRenderer: {fileID: 5525390586935263179}
+  player: {fileID: 0}
+  Mirror:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!61 &1463726887
 BoxCollider2D:
   m_ObjectHideFlags: 0

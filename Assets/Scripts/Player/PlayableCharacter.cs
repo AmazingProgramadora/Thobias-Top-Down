@@ -152,10 +152,10 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror"))
+        if (collision.gameObject.CompareTag("Box"))
         {
             boxRdbd = collision.gameObject.GetComponent<Rigidbody2D>();
-            boxJoint = collision.gameObject.GetComponent<FixedJoint2D>();
+            boxJoint = collision.gameObject.GetComponent<FixedJoint2D>(); //Crime contra a humanidade
         }
     }
 

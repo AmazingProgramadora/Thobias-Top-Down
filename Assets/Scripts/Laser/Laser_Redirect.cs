@@ -11,6 +11,8 @@ public class Laser_Redirect : MonoBehaviour
     Laser_Redirect laser_Redirect;
     Laser_End laser_End;
     bool shooting;
+
+    [SerializeField] private LayerMask Mirror;
     //public PlayableCharacter player;
     #endregion
 
@@ -53,7 +55,7 @@ public class Laser_Redirect : MonoBehaviour
         if (!shooting)
         {
             firePoint.position = position;
-            print( gameObject.name +": " + firePoint.position);
+            //print( gameObject.name +": " + firePoint.position);
         }
 
         StartCoroutine(ShootLaser(normal, directiona));
@@ -78,7 +80,7 @@ public class Laser_Redirect : MonoBehaviour
         Vector2 reflectDirection = Vector2.Reflect(dir, normal);
         //Vector2 reflectDirection = ReflectDirection(dir, normal);
 
-        RaycastHit2D hit = Physics2D.Raycast( (Vector2)firePoint.position + (reflectDirection) , reflectDirection);
+        RaycastHit2D hit = Physics2D.Raycast( (Vector2)firePoint.position + (reflectDirection) , reflectDirection, float.MaxValue, Mirror);
 
         DrawRay(firePoint.position, hit.point);
         

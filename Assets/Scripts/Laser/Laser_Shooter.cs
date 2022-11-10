@@ -11,6 +11,8 @@ public class Laser_Shooter : MonoBehaviour
     Laser_Redirect laser_Redirect;
     Laser_End laser_End;
     public PlayableCharacter player;
+
+    [SerializeField] private LayerMask Mirror;
     #endregion
 
 
@@ -21,7 +23,7 @@ public class Laser_Shooter : MonoBehaviour
     #region LASER
     void ShootLaser()
     {
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right);
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right, float.MaxValue, Mirror );
 
         DrawRay(firePoint.position, hit.point);
 
