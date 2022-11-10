@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System.Security.Cryptography;
 
 public class PlayableCharacter : MonoBehaviour
 {
     Camera cam;
     GeneralInputs generalInputs;
     Rigidbody2D rdbd;
+    Animator anima;
     Vector2 movementInputs;
     public float movementSpeed;
     Rigidbody2D boxRdbd;
@@ -29,7 +31,8 @@ public class PlayableCharacter : MonoBehaviour
     {
         //currentHealth = maxHelath;
         //healthBar.SetMaxHealth(maxHelath);
-        
+
+        anima = GetComponent<Animator>();
         cam = Camera.main;
         if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
         {
@@ -39,6 +42,25 @@ public class PlayableCharacter : MonoBehaviour
     private void FixedUpdate()
     {
         movementInputs = generalInputs.PlayableCharacterInputs.Movement.ReadValue<Vector2>();
+        
+        //Checa se esta movendo para o animator
+
+        //provavelmente nao eh a maneira mais eficaz
+        if(movementInputs != Vector2.zero && anima.GetBool("IsPushing") == false)
+        {
+            anima.SetFloat("Xinput", movementInputs.x);
+            anima.SetFloat("Yinput", movementInputs.y);
+
+            anima.SetBool("IsWalking", true);
+        }
+        else if(movementInputs != Vector2.zero && anima.GetBool("IsPushing") == true)
+        {
+            anima.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anima.SetBool("IsWalking", false);
+        }
         rdbd.velocity = movementInputs * movementSpeed;
     }
 
@@ -53,12 +75,17 @@ public class PlayableCharacter : MonoBehaviour
         {
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
         }
+
+        //checa se o player esta segurando caixa
         if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
         {
+            anima.SetBool("IsPushing", true);
             MoveBox();
         }
         else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
         {
+            anima.SetBool("IsPushing", false);
+
             if (boxRdbd != null)
             {
                 boxRdbd.velocity = Vector2.zero;
