@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
+    public bool pressed = false;
     [NonSerialized] public bool enableButtonCollision;
     Animator anima;
     Door door;
@@ -26,9 +27,10 @@ public class Button : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             anima.SetBool("ButtonDownAnimator", true);
+            pressed = true;
 
-            if(door != null)
-            door.OpenDoor();
+            if (door != null)
+                door.OpenDoor();
         }
     }
 
@@ -38,8 +40,9 @@ public class Button : MonoBehaviour
         {
 
             anima.SetBool("ButtonDownAnimator", false);
-            
-            if(door != null)
+            pressed = false;
+
+            if (door != null)
                 door.CloseDoor();
         }
     }

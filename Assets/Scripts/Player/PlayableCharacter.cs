@@ -14,7 +14,7 @@ public class PlayableCharacter : MonoBehaviour
     Vector2 movementInputs;
     public float movementSpeed;
     Rigidbody2D boxRdbd;
-    FixedJoint2D boxJoint;
+    public FixedJoint2D boxJoint;
     AudioSource audioSource;
     [SerializeField]
     AudioClip interactSound;
