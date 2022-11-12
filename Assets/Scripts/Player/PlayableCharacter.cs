@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 
 public class PlayableCharacter : MonoBehaviour
 {
+    bool pushed = true;
     Camera cam;
     GeneralInputs generalInputs;
     Rigidbody2D rdbd;
@@ -16,6 +17,7 @@ public class PlayableCharacter : MonoBehaviour
     Rigidbody2D boxRdbd;
     public FixedJoint2D boxJoint;
     AudioSource audioSource;
+    [SerializeField] AudioClip BoxSFX;
     [SerializeField]
     AudioClip interactSound;
     //public int maxHelath = 100;
@@ -56,6 +58,8 @@ public class PlayableCharacter : MonoBehaviour
         else if(movementInputs != Vector2.zero && anima.GetBool("IsPushing") == true)
         {
             anima.SetBool("IsWalking", true);
+            StartCoroutine(SFX());
+
         }
         else
         {
@@ -110,6 +114,17 @@ public class PlayableCharacter : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }*/
 
+    IEnumerator SFX()
+    {
+        if (pushed == true)
+        {
+            audioSource.PlayOneShot(BoxSFX);
+            pushed = false;
+            yield return new WaitForSeconds(0.561F);
+            pushed = true;
+        }
+    }
+    
     void MoveBox()
     {
         if (boxRdbd != null)

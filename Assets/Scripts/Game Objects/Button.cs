@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public bool pressed = false;
     [NonSerialized] public bool enableButtonCollision;
     Animator anima;
+    AudioSource audioSource;
     Door door;
     [SerializeField] GameObject thisDoor;
 
     void Awake()
     {
         door = thisDoor.GetComponent<Door>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -27,7 +28,7 @@ public class Button : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             anima.SetBool("ButtonDownAnimator", true);
-            pressed = true;
+            audioSource.Play();
 
             if (door != null)
                 door.OpenDoor();
@@ -40,7 +41,6 @@ public class Button : MonoBehaviour
         {
 
             anima.SetBool("ButtonDownAnimator", false);
-            pressed = false;
 
             if (door != null)
                 door.CloseDoor();

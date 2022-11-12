@@ -14,14 +14,5 @@ public class ButtonSFX : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate()
-    {
-        if (button.pressed == true)
-        {
-            audioSource.Play();
-        }
-    }
-
-
 
 }
