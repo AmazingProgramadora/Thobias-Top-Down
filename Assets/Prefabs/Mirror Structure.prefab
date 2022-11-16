@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 6762775427099869451}
   m_Layer: 6
   m_Name: Mirror Structure
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 6174789098872264737}
   m_Layer: 6
   m_Name: Structure
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
