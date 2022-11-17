@@ -7,8 +7,13 @@ using System.Security.Cryptography;
 
 public class PlayableCharacter : MonoBehaviour
 {
+    [SerializeField]
+    float rangeDistanceGrab, rangeHeightGrab;
+    [SerializeField]
+    LayerMask layerMask;
     bool pushed = true;
     Camera cam;
+    Animator animator;
     GeneralInputs generalInputs;
     Rigidbody2D rdbd;
     Animator anima;
@@ -28,6 +33,7 @@ public class PlayableCharacter : MonoBehaviour
         generalInputs = new GeneralInputs();
         rdbd = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -75,31 +81,15 @@ public class PlayableCharacter : MonoBehaviour
             audioSource.PlayOneShot(interactSound);
         }
 
-            if (generalInputs.Actions.SwitchingCameras.triggered)
+        if (generalInputs.Actions.SwitchingCameras.triggered)
         {
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
         }
 
-        //checa se o player esta segurando caixa
-        if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
-        {
-            anima.SetBool("IsPushing", true);
-            MoveBox();
-        }
-        else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
-        {
-            anima.SetBool("IsPushing", false);
+        //GrabFunction();
+        RangeGrab();
+        print(animator.GetBool("IsPushing"));
 
-            if (boxRdbd != null)
-            {
-                boxRdbd.velocity = Vector2.zero;
-                boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-                boxJoint.enabled = false;
-                boxJoint.connectedBody = null;
-                boxRdbd = null;
-                boxJoint = null;
-            }
-        }
 
         /*if (generalInputs.PlayableCharacterInputs.TakeDamage.WasReleasedThisFrame())
         {
@@ -188,7 +178,76 @@ public class PlayableCharacter : MonoBehaviour
                 boxJoint = null;
             }
         }
+    }
 
+
+
+
+
+
+
+
+    private void GrabFunction()  //checa se o player esta segurando caixa
+    { 
+        if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        {
+            anima.SetBool("IsPushing", true);
+            MoveBox();
+        }
+
+        else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
+        {
+            anima.SetBool("IsPushing", false);
+            
+            if (boxRdbd != null)
+            {
+               boxRdbd.velocity = Vector2.zero;
+               boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+               boxJoint.enabled = false;
+               boxJoint.connectedBody = null;
+               boxRdbd = null;
+               boxJoint = null;
+            }
+        }
+    }
+
+    private void RangeGrab()
+    {
+        Vector3 heightAdjustment = new Vector3(rangeDistanceGrab / 2, rangeHeightGrab, 0);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + heightAdjustment, Vector2.left, rangeDistanceGrab, layerMask);
+
+        //!this.animator.GetCurrentAnimatorStateInfo(0).IsName("XYZ")
+        if (hit.collider.CompareTag("Box") || hit.collider.CompareTag("Mirror")) //eh esse CompareTag que está dando o bug do NullReferenceException
+        {
+            GrabFunction();
+        //        if (transform.position.x > hit.point.x)
+        //        {
+        //            transform.localScale = new Vector3(-1, 1, 1);
+        //        }
+        //       
+        //        else
+        //        {
+        //            transform.localScale = new Vector3(1, 1, 1);
+        //        }
+        //
+        //       animator.SetBool("IsPushing", true);
+        //   }
+        //   else if (!hit.collider.CompareTag("Box") && !hit.collider.CompareTag("Mirror") || hit.collider == null)
+        //   {
+        //       animator.SetBool("IsPushing", false);
+        }
+
+        if (hit.collider == null)
+             animator.SetBool("IsPushing", false);
 
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Vector3 startingPositionOne = transform.position + new Vector3(rangeDistanceGrab / 2, rangeHeightGrab, 0);
+        Vector3 finalPositionOne = transform.position + new Vector3(-rangeDistanceGrab / 2, rangeHeightGrab, 0);
+        Gizmos.DrawLine(startingPositionOne, finalPositionOne);
+    }
+
 }
