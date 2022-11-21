@@ -8,12 +8,12 @@ using UnityEditor.PackageManager;
 
 public class PlayableCharacter : MonoBehaviour
 {
+    #region Variables
     [SerializeField]
     float rangeDistanceGrab, rangeHeightGrab;
     [SerializeField]
     LayerMask layerMask;
     bool pushed = true;
-    bool grabFunctionBoolean = false;
     Camera cam;
     Animator animator;
     GeneralInputs generalInputs;
@@ -27,9 +27,12 @@ public class PlayableCharacter : MonoBehaviour
     [SerializeField] AudioClip BoxSFX;
     [SerializeField]
     AudioClip interactSound;
+    Vector2 lastInput;
+    private bool isGrabbing;
     //public int maxHelath = 100;
     //public int currentHealth;
-   // public HealthBar healthBar;
+    // public HealthBar healthBar;
+    #endregion
     private void Awake()
     {
         gameObject.GetComponent<Rigidbody2D>().WakeUp();
@@ -64,8 +67,10 @@ public class PlayableCharacter : MonoBehaviour
             anima.SetFloat("Yinput", movementInputs.y);
 
             anima.SetBool("IsWalking", true);
+
+            lastInput = new Vector2(movementInputs.x, movementInputs.y);
         }
-        else if(movementInputs != Vector2.zero && anima.GetBool("IsPushing") == true)
+        else if (movementInputs != Vector2.zero && anima.GetBool("IsPushing") == true)
         {
             anima.SetBool("IsWalking", true);
             StartCoroutine(SFX());
@@ -115,16 +120,8 @@ public class PlayableCharacter : MonoBehaviour
             pushed = true;
         }
     }
-    
-    void MoveBox()
-    {
-        if (boxRdbd != null)
-        {
-            boxRdbd.bodyType = RigidbodyType2D.Dynamic;
-            boxJoint.enabled = true;
-            boxJoint.connectedBody = rdbd;
-        }
-    }
+
+    #region Camera
     private void ChangePlayer(int playerIndex)
     {
         StartCoroutine(ChangePlayerCoroutine(ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.GetInactivePlayerIndex()].transform, playerIndex));
@@ -149,12 +146,14 @@ public class PlayableCharacter : MonoBehaviour
 
         //essa parte conserta o bug de continuar andando quando troca de cameras
         int notPlayerIndex;
-        if(playerIndex == 0)
+        if (playerIndex == 0)
             notPlayerIndex = 1;
         else
             notPlayerIndex = 0;
         ManagerPlayer.Instance.playerCharacters[notPlayerIndex].GetComponent<Rigidbody2D>().Sleep();
     }
+    #endregion
+
     private void OnEnable()
     {
         generalInputs.Enable();
@@ -166,7 +165,7 @@ public class PlayableCharacter : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.CompareTag("Box") && !isGrabbing)
         {
             boxRdbd = collision.gameObject.GetComponent<Rigidbody2D>();
             boxJoint = collision.gameObject.GetComponent<FixedJoint2D>(); //Crime contra a humanidade
@@ -177,7 +176,7 @@ public class PlayableCharacter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
         {
-            if (boxRdbd != null && boxJoint != null)
+            /*if (boxRdbd != null && boxJoint != null)
             {
                 boxRdbd.velocity = Vector2.zero;
                 boxRdbd.bodyType = RigidbodyType2D.Kinematic;
@@ -185,90 +184,77 @@ public class PlayableCharacter : MonoBehaviour
                 boxJoint.connectedBody = null;
                 boxRdbd = null;
                 boxJoint = null;
-            }
+                isGrabbing = false;
+                print("b");
+            }*/
         }
     }
 
 
-
-
-
-
-
-
+    #region Grab
+    void MoveBox()
+    {
+        if (boxRdbd != null && !isGrabbing)
+        {
+            isGrabbing = true;
+            boxRdbd.bodyType = RigidbodyType2D.Dynamic;
+            boxJoint.enabled = true;
+            boxJoint.connectedBody = rdbd;
+        }
+    }
     private void GrabFunction()  //checa se o player esta segurando caixa
     {
-        if (grabFunctionBoolean)
+        if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
         {
-            if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
-            {
-                anima.SetBool("IsPushing", true);
-                MoveBox();
-            }
+            anima.SetBool("IsPushing", true);
+            MoveBox();
+        }
 
-            if (!generalInputs.PlayableCharacterInputs.Grab.IsPressed())
-            {
-                anima.SetBool("IsPushing", false);
+        if (!generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        {
+            anima.SetBool("IsPushing", false);
 
-                if (boxRdbd != null && generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
-                //o problema do WasReleasedThisFrame() eh que se a acao nao acontece naquele frame, a informacao nao eh gravada
-                //tem que consertar isso
-                {
-                    boxRdbd.velocity = Vector2.zero;
-                    boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-                    boxJoint.enabled = false;
-                    boxJoint.connectedBody = null;
-                    boxRdbd = null;
-                    boxJoint = null;
-                }
+            if (boxRdbd != null && generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
+            //o problema do WasReleasedThisFrame() eh que se a acao nao acontece naquele frame, a informacao nao eh gravada, tem que consertar isso
+            {
+                boxRdbd.velocity = Vector2.zero;
+                boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+                boxJoint.enabled = false;
+                boxJoint.connectedBody = null;
+                boxRdbd = null;
+                boxJoint = null;
+                isGrabbing = false;
+                print("a");
             }
         }
     }
 
-    private void RangeGrab() //DEIXEM ESSES COMENTARIOS AQUI PFV
+    private void RangeGrab()
     {
-        Vector3 heightAdjustment = new Vector3(rangeDistanceGrab / 2, rangeHeightGrab, 0);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + heightAdjustment, Vector2.left, rangeDistanceGrab, layerMask);
+        Vector3 heightAdjustment = new Vector3(rangeDistanceGrab / 7, rangeHeightGrab, 0);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastInput, rangeDistanceGrab / 7, layerMask);
 
         if (hit.collider != null)
         {
-             if (hit == GameObject.FindGameObjectWithTag("Box")) //pq ele pensa que tudo tem a tag "Box"?
-            {
-                print("yes");
-                grabFunctionBoolean = true;
-            }
-            //        if (transform.position.x > hit.point.x)
-            //        {
-            //            transform.localScale = new Vector3(-1, 1, 1); // ou //!this.animator.GetCurrentAnimatorStateInfo(0).IsName("XYZ")
-            //        }
-            //       
-            //        else
-            //        {
-            //            transform.localScale = new Vector3(1, 1, 1);
-            //        }
-            //
-            //       animator.SetBool("IsPushing", true);
+            Debug.DrawLine(transform.position, hit.point);
+
+            if (hit.collider.gameObject.CompareTag("Box") || hit.collider.gameObject.CompareTag("Mirror"))
+                GrabFunction();
 
             else
-                {
-                    print("no");
-                    grabFunctionBoolean = false;
-                    animator.SetBool("IsPushing", false);
-                }
+                animator.SetBool("IsPushing", false);
         }
 
-        // if (hit.collider == null)
-        // {
-        //     animator.SetBool("IsPushing", false);
-        // }
+        if (hit.collider == null)
+        {
+            animator.SetBool("IsPushing", false);
+        }
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Vector3 startingPositionOne = transform.position + new Vector3(rangeDistanceGrab / 2, rangeHeightGrab, 0);
-        Vector3 finalPositionOne = transform.position + new Vector3(-rangeDistanceGrab / 2, rangeHeightGrab, 0);
-        Gizmos.DrawLine(startingPositionOne, finalPositionOne);
-    }
+    #endregion
+
+
+
+
 }
