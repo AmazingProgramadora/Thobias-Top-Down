@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using System.Security.Cryptography;
+using UnityEditor.PackageManager;
 
 public class PlayableCharacter : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayableCharacter : MonoBehaviour
     [SerializeField]
     LayerMask layerMask;
     bool pushed = true;
+    bool grabFunctionBoolean = false;
     Camera cam;
     Animator animator;
     GeneralInputs generalInputs;
@@ -30,6 +32,8 @@ public class PlayableCharacter : MonoBehaviour
    // public HealthBar healthBar;
     private void Awake()
     {
+        gameObject.GetComponent<Rigidbody2D>().WakeUp();
+
         generalInputs = new GeneralInputs();
         rdbd = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -50,11 +54,11 @@ public class PlayableCharacter : MonoBehaviour
     private void FixedUpdate()
     {
         movementInputs = generalInputs.PlayableCharacterInputs.Movement.ReadValue<Vector2>();
-        
+
         //Checa se esta movendo para o animator
 
         //provavelmente nao eh a maneira mais eficaz
-        if(movementInputs != Vector2.zero && anima.GetBool("IsPushing") == false)
+        if (movementInputs != Vector2.zero && anima.GetBool("IsPushing") == false)
         {
             anima.SetFloat("Xinput", movementInputs.x);
             anima.SetFloat("Yinput", movementInputs.y);
@@ -86,10 +90,7 @@ public class PlayableCharacter : MonoBehaviour
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
         }
 
-        //GrabFunction();
         RangeGrab();
-        print(animator.GetBool("IsPushing"));
-
 
         /*if (generalInputs.PlayableCharacterInputs.TakeDamage.WasReleasedThisFrame())
         {
@@ -145,6 +146,14 @@ public class PlayableCharacter : MonoBehaviour
 
         novoPlayerAtivo.enabled = true;
         enabled = false;
+
+        //essa parte conserta o bug de continuar andando quando troca de cameras
+        int notPlayerIndex;
+        if(playerIndex == 0)
+            notPlayerIndex = 1;
+        else
+            notPlayerIndex = 0;
+        ManagerPlayer.Instance.playerCharacters[notPlayerIndex].GetComponent<Rigidbody2D>().Sleep();
     }
     private void OnEnable()
     {
@@ -188,57 +197,70 @@ public class PlayableCharacter : MonoBehaviour
 
 
     private void GrabFunction()  //checa se o player esta segurando caixa
-    { 
-        if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+    {
+        if (grabFunctionBoolean)
         {
-            anima.SetBool("IsPushing", true);
-            MoveBox();
-        }
-
-        else if (generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
-        {
-            anima.SetBool("IsPushing", false);
-            
-            if (boxRdbd != null)
+            if (generalInputs.PlayableCharacterInputs.Grab.IsPressed())
             {
-               boxRdbd.velocity = Vector2.zero;
-               boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-               boxJoint.enabled = false;
-               boxJoint.connectedBody = null;
-               boxRdbd = null;
-               boxJoint = null;
+                anima.SetBool("IsPushing", true);
+                MoveBox();
+            }
+
+            if (!generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+            {
+                anima.SetBool("IsPushing", false);
+
+                if (boxRdbd != null && generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
+                //o problema do WasReleasedThisFrame() eh que se a acao nao acontece naquele frame, a informacao nao eh gravada
+                //tem que consertar isso
+                {
+                    boxRdbd.velocity = Vector2.zero;
+                    boxRdbd.bodyType = RigidbodyType2D.Kinematic;
+                    boxJoint.enabled = false;
+                    boxJoint.connectedBody = null;
+                    boxRdbd = null;
+                    boxJoint = null;
+                }
             }
         }
     }
 
-    private void RangeGrab()
+    private void RangeGrab() //DEIXEM ESSES COMENTARIOS AQUI PFV
     {
         Vector3 heightAdjustment = new Vector3(rangeDistanceGrab / 2, rangeHeightGrab, 0);
         RaycastHit2D hit = Physics2D.Raycast(transform.position + heightAdjustment, Vector2.left, rangeDistanceGrab, layerMask);
 
-        //!this.animator.GetCurrentAnimatorStateInfo(0).IsName("XYZ")
-        if (hit.collider.CompareTag("Box") || hit.collider.CompareTag("Mirror")) //eh esse CompareTag que está dando o bug do NullReferenceException
+        if (hit.collider != null)
         {
-            GrabFunction();
-        //        if (transform.position.x > hit.point.x)
-        //        {
-        //            transform.localScale = new Vector3(-1, 1, 1);
-        //        }
-        //       
-        //        else
-        //        {
-        //            transform.localScale = new Vector3(1, 1, 1);
-        //        }
-        //
-        //       animator.SetBool("IsPushing", true);
-        //   }
-        //   else if (!hit.collider.CompareTag("Box") && !hit.collider.CompareTag("Mirror") || hit.collider == null)
-        //   {
-        //       animator.SetBool("IsPushing", false);
+             if (hit == GameObject.FindGameObjectWithTag("Box")) //pq ele pensa que tudo tem a tag "Box"?
+            {
+                print("yes");
+                grabFunctionBoolean = true;
+            }
+            //        if (transform.position.x > hit.point.x)
+            //        {
+            //            transform.localScale = new Vector3(-1, 1, 1); // ou //!this.animator.GetCurrentAnimatorStateInfo(0).IsName("XYZ")
+            //        }
+            //       
+            //        else
+            //        {
+            //            transform.localScale = new Vector3(1, 1, 1);
+            //        }
+            //
+            //       animator.SetBool("IsPushing", true);
+
+            else
+                {
+                    print("no");
+                    grabFunctionBoolean = false;
+                    animator.SetBool("IsPushing", false);
+                }
         }
 
-        if (hit.collider == null)
-             animator.SetBool("IsPushing", false);
+        // if (hit.collider == null)
+        // {
+        //     animator.SetBool("IsPushing", false);
+        // }
 
     }
 
@@ -249,5 +271,4 @@ public class PlayableCharacter : MonoBehaviour
         Vector3 finalPositionOne = transform.position + new Vector3(-rangeDistanceGrab / 2, rangeHeightGrab, 0);
         Gizmos.DrawLine(startingPositionOne, finalPositionOne);
     }
-
 }
