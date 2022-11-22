@@ -7,9 +7,11 @@ public class Door : MonoBehaviour
 {
     Animator anima;
     Collider2D door_Collider;
+    CircleCollider2D circle_Collider;
 
     void Awake()
     {
+        circle_Collider = GetComponent<CircleCollider2D>();
         door_Collider = GetComponent<Collider2D>();
     }
 
@@ -27,6 +29,7 @@ public class Door : MonoBehaviour
         //Door Opens here
         anima.SetBool("IsOpen", true);
         door_Collider.enabled = false;
+        circle_Collider.enabled = false;
     }
 
     public void CloseDoor()
@@ -34,5 +37,22 @@ public class Door : MonoBehaviour
         //Door closes here
         anima.SetBool("IsOpen", false);
         door_Collider.enabled = true;
+        circle_Collider.enabled = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            foreach (GameObject door in ManagerPlayer.Instance.keyList)
+            {
+                if (door == gameObject)
+                {
+                    OpenDoor();                    
+                    break;
+                }
+
+            }
+        }
     }
 }

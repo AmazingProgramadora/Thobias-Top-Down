@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ManagerPlayer : MonoBehaviour
 {
+    #region Declarations
+    public List<GameObject> keyList = new List<GameObject>();
+
     public static ManagerPlayer Instance;
     public PlayableCharacter[] playerCharacters = new PlayableCharacter[2]; //array
     public int activePlayer;
+
+    #endregion
     //public GameObject PlayerFuture, PlayerPast;
     public int GetInactivePlayerIndex()
     {
@@ -22,4 +27,3 @@ public class ManagerPlayer : MonoBehaviour
     }
 
 }
-

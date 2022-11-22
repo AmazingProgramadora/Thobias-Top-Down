@@ -8,6 +8,8 @@ using UnityEditor.PackageManager;
 
 public class PlayableCharacter : MonoBehaviour
 {
+
+
     #region Variables
     [SerializeField]
     float rangeDistanceGrab, rangeHeightGrab;
@@ -33,6 +35,12 @@ public class PlayableCharacter : MonoBehaviour
     //public int currentHealth;
     // public HealthBar healthBar;
     #endregion
+
+    #region Lists
+
+
+    #endregion
+
     private void Awake()
     {
         gameObject.GetComponent<Rigidbody2D>().WakeUp();
@@ -154,6 +162,7 @@ public class PlayableCharacter : MonoBehaviour
     }
     #endregion
 
+    #region Enables
     private void OnEnable()
     {
         generalInputs.Enable();
@@ -163,6 +172,9 @@ public class PlayableCharacter : MonoBehaviour
     {
         generalInputs.Disable();
     }
+    #endregion
+
+    #region Collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Box") && !isGrabbing)
@@ -190,6 +202,14 @@ public class PlayableCharacter : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Key"))
+        {
+            ManagerPlayer.Instance.keyList.Add(collision.gameObject.GetComponent<Key>().GetDoor());
+        }
+    }
+    #endregion
 
     #region Grab
     void MoveBox()
@@ -223,8 +243,7 @@ public class PlayableCharacter : MonoBehaviour
                 boxJoint.connectedBody = null;
                 boxRdbd = null;
                 boxJoint = null;
-                isGrabbing = false;
-                print("a");
+                isGrabbing = false;               
             }
         }
     }
