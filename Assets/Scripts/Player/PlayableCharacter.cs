@@ -41,6 +41,7 @@ public class PlayableCharacter : MonoBehaviour
 
     #endregion
 
+    #region Updates/Start/Awake
     private void Awake()
     {
         gameObject.GetComponent<Rigidbody2D>().WakeUp();
@@ -110,6 +111,7 @@ public class PlayableCharacter : MonoBehaviour
             TakeDamage(20);
         }*/
     }
+    #endregion
 
     /*public void TakeDamage(int damage)
     {
@@ -186,21 +188,16 @@ public class PlayableCharacter : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror") && !generalInputs.PlayableCharacterInputs.Grab.IsPressed())
+        //print(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Mirror"))
         {
-            /*if (boxRdbd != null && boxJoint != null)
+            if (boxRdbd != null && boxJoint != null && !isGrabbing)
             {
-                boxRdbd.velocity = Vector2.zero;
-                boxRdbd.bodyType = RigidbodyType2D.Kinematic;
-                boxJoint.enabled = false;
-                boxJoint.connectedBody = null;
                 boxRdbd = null;
                 boxJoint = null;
-                isGrabbing = false;
-                print("b");
-            }*/
-        }
-    }
+            }   
+        }       
+    }           
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -235,14 +232,14 @@ public class PlayableCharacter : MonoBehaviour
             anima.SetBool("IsPushing", false);
 
             if (boxRdbd != null && generalInputs.PlayableCharacterInputs.Grab.WasReleasedThisFrame())
-            //o problema do WasReleasedThisFrame() eh que se a acao nao acontece naquele frame, a informacao nao eh gravada, tem que consertar isso
+            //o problema do WasReleasedThisFrame() eh que se a acao nao acontece naquele frame, a informacao nao eh gravada, tem que consertar isso (???)
             {
                 boxRdbd.velocity = Vector2.zero;
                 boxRdbd.bodyType = RigidbodyType2D.Kinematic;
                 boxJoint.enabled = false;
                 boxJoint.connectedBody = null;
-                boxRdbd = null;
-                boxJoint = null;
+                //boxRdbd = null;
+                //boxJoint = null;
                 isGrabbing = false;               
             }
         }
