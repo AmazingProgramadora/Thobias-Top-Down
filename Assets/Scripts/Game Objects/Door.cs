@@ -29,7 +29,8 @@ public class Door : MonoBehaviour
         //Door Opens here
         anima.SetBool("IsOpen", true);
         door_Collider.enabled = false;
-        circle_Collider.enabled = false;
+        if(circle_Collider != null) 
+            circle_Collider.enabled = false;
     }
 
     public void CloseDoor()
@@ -37,7 +38,8 @@ public class Door : MonoBehaviour
         //Door closes here
         anima.SetBool("IsOpen", false);
         door_Collider.enabled = true;
-        circle_Collider.enabled = true;
+        if (circle_Collider != null)
+            circle_Collider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
