@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1853626038511121604}
   - component: {fileID: 1853626038511121607}
   - component: {fileID: 1853626038511121606}
-  - component: {fileID: 1853626038511121601}
+  - component: {fileID: 7651829923393508869}
   m_Layer: 0
   m_Name: Long Laser Door
   m_TagString: Untagged
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1853626038511121601
+--- !u!114 &7651829923393508869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,6 +139,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1853626038511121600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7e4feffd6984e45b5e59430131be0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 25f13acb18fc5324082f0abcf331f91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
