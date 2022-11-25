@@ -50,7 +50,9 @@ public class Door : MonoBehaviour
             {
                 if (door == gameObject)
                 {
-                    OpenDoor();                    
+                    OpenDoor();
+                    ManagerPlayer.Instance.keyList.Remove(door);
+                    Hud_Manager.instance.CheckKeys();
                     break;
                 }
 

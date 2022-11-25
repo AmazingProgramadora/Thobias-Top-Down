@@ -204,6 +204,7 @@ public class PlayableCharacter : MonoBehaviour
         if (collision.CompareTag("Key"))
         {
             ManagerPlayer.Instance.keyList.Add(collision.gameObject.GetComponent<Key>().GetDoor());
+            Hud_Manager.instance.CheckKeys();
         }
     }
     #endregion

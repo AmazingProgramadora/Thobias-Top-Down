@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Laser_End : MonoBehaviour
 {
+    [SerializeField] bool order = false;
+
     bool on;
     float timeToOff;
     float currentTimeOff;
@@ -37,8 +39,10 @@ public class Laser_End : MonoBehaviour
         {
             anima.SetBool("LaserEndAnimator", true);
             audioSource.Play();
-            if (door != null)
-            door.OpenDoor();
+            if (door != null && !order)
+                door.OpenDoor();
+            else
+                door.CloseDoor();
             //Inserir aqui o que deveria acontecer quando acertar os lasers
             on = true;
         }
@@ -46,8 +50,12 @@ public class Laser_End : MonoBehaviour
 
     void Deactivate()
     {
+
         anima.SetBool("LaserEndAnimator", false);
-        door.CloseDoor();
+        if(!order)
+            door.CloseDoor();
+        else
+            door.OpenDoor();
     }
 
 }
