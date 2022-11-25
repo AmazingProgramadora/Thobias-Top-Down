@@ -120,6 +120,7 @@ public class PlayableCharacter : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }*/
 
+    #region Sound
     IEnumerator SFX()
     {
         if (pushed == true)
@@ -130,6 +131,7 @@ public class PlayableCharacter : MonoBehaviour
             pushed = true;
         }
     }
+    #endregion
 
     #region Camera
     private void ChangePlayer(int playerIndex)
@@ -239,8 +241,6 @@ public class PlayableCharacter : MonoBehaviour
                 boxRdbd.bodyType = RigidbodyType2D.Kinematic;
                 boxJoint.enabled = false;
                 boxJoint.connectedBody = null;
-                //boxRdbd = null;
-                //boxJoint = null;
                 isGrabbing = false;               
             }
         }
