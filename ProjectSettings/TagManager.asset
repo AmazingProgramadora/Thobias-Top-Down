@@ -8,6 +8,7 @@ TagManager:
   - Laser End
   - Box
   - Key
+  - TimeTransition
   layers:
   - Default
   - TransparentFX

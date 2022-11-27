@@ -99,10 +99,10 @@ public class PlayableCharacter : MonoBehaviour
             audioSource.PlayOneShot(interactSound);
         }
 
-        if (generalInputs.Actions.SwitchingCameras.triggered)
+        /*if (generalInputs.Actions.SwitchingCameras.triggered)
         {
             ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
-        }
+        }*/
 
         RangeGrab();
 
@@ -207,6 +207,10 @@ public class PlayableCharacter : MonoBehaviour
         {
             ManagerPlayer.Instance.keyList.Add(collision.gameObject.GetComponent<Key>().GetDoor());
             Hud_Manager.instance.CheckKeys();
+        }
+        if (collision.CompareTag("TimeTransition"))
+        {
+            ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
         }
     }
     #endregion
