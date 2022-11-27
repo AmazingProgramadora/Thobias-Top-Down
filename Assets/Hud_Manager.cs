@@ -20,7 +20,7 @@ public class Hud_Manager : MonoBehaviour
         foreach(GameObject key in ManagerPlayer.Instance.keyList)
         {
             numberKeys++;
-            print(numberKeys);
+            //print(numberKeys);
         }
         if (ManagerPlayer.Instance.keyList.Count < numberKeys)
             numberKeys--;
