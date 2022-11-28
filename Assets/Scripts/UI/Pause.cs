@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     [SerializeField]
-    GameObject pausePanel, goToPanel, actualPanel;
+    GameObject pausePanel, goToPanel, actualPanel, endingCreditsPanel, menuPanel;
     GeneralInputs generalInputs;
 
     private void Awake()
@@ -17,10 +17,6 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (pausePanel == null)
-        {
-            return;
-        }
 
         if (generalInputs.Actions.Pause.triggered && pausePanel.activeSelf == false && Time.timeScale == 1f)
         {
@@ -33,6 +29,18 @@ public class Pause : MonoBehaviour
         }
 
         StartCoroutine(Debounce());
+
+        if (EndGame.endTrigger && menuPanel!=null)
+        {
+            menuPanel.SetActive(false);
+            endingCreditsPanel.SetActive(true);
+            EndGame.endTrigger = false;
+
+        }
+        if (pausePanel == null || endingCreditsPanel == null || menuPanel == null)
+        {
+            return; //sai do metodo = funcao
+        }
     }
 
     public void PauseFunction()

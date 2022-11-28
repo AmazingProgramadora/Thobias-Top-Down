@@ -704,6 +704,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 780285178}
   actualPanel: {fileID: 1497924178}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &366992639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,6 +989,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 1000965118}
   actualPanel: {fileID: 806547128}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &480283137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1274,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 780285178}
   actualPanel: {fileID: 1466549391}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &529993089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,7 +2007,7 @@ RectTransform:
   - {fileID: 1438399479}
   - {fileID: 1844179183}
   m_Father: {fileID: 1091891977}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2171,7 +2177,7 @@ RectTransform:
   - {fileID: 1462390312}
   - {fileID: 1592216919}
   m_Father: {fileID: 1091891977}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2501,7 +2507,7 @@ RectTransform:
   - {fileID: 1628162193}
   - {fileID: 997326546}
   m_Father: {fileID: 1091891977}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2751,6 +2757,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1250404493}
   - {fileID: 806547129}
   - {fileID: 780285181}
   - {fileID: 1466549392}
@@ -2898,6 +2905,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206503841}
   m_CullTransparentMesh: 1
+--- !u!1 &1250404492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250404493}
+  - component: {fileID: 1250404494}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1250404493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250404492}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -541.2542, y: -224.41403, z: -561.7216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1091891977}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250404494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250404492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9482525e4c39a4e887401cc5de7b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
+  goToPanel: {fileID: 0}
+  actualPanel: {fileID: 0}
+  endingCreditsPanel: {fileID: 1000965118}
+  menuPanel: {fileID: 806547128}
 --- !u!1 &1351709803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3406,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 0}
   actualPanel: {fileID: 780285178}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!1 &1438399478
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3463,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 1497924178}
   actualPanel: {fileID: 780285178}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &1438399481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3762,7 +3821,7 @@ RectTransform:
   - {fileID: 1770957275}
   - {fileID: 529993087}
   m_Father: {fileID: 1091891977}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3924,7 +3983,7 @@ RectTransform:
   - {fileID: 1351709804}
   - {fileID: 801728665}
   m_Father: {fileID: 1091891977}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4566,6 +4625,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 806547128}
   actualPanel: {fileID: 1000965118}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &1628162195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4790,6 +4851,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 780285178}
   actualPanel: {fileID: 806547128}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &1686008292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,6 +5136,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 1466549391}
   actualPanel: {fileID: 780285178}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &1724418788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5625,6 +5690,8 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   goToPanel: {fileID: 806547128}
   actualPanel: {fileID: 780285178}
+  endingCreditsPanel: {fileID: 0}
+  menuPanel: {fileID: 0}
 --- !u!114 &1844179185
 MonoBehaviour:
   m_ObjectHideFlags: 0

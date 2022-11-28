@@ -34,11 +34,6 @@ public class PlayableCharacter : MonoBehaviour
     // public HealthBar healthBar;
     #endregion
 
-    #region Lists
-
-
-    #endregion
-
     #region Updates/Start/Awake
     private void Awake()
     {

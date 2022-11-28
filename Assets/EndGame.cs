@@ -5,11 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static bool endTrigger = false;
+    public static EndGame instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Player"))
-        SceneManager.LoadScene("Menu");
+        {
+            endTrigger = true;
+            SceneManager.LoadScene("Menu");
+        }
+
     }
 }
