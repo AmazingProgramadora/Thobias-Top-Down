@@ -9,26 +9,26 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/Menu.unity
     guid: b8db1382647e0d24d9923a80d33c5599
   - enabled: 1
-    path: Assets/Scenes/UI/Options.unity
-    guid: 0f5a8bcc715b3304ba88d321a147271c
-  - enabled: 1
-    path: Assets/Scenes/UI/Controls.unity
-    guid: 0abdfa9e9ea643a4c810f4e41200396a
-  - enabled: 1
-    path: Assets/Scenes/UI/Resolution.unity
-    guid: 915c8ba2394b30a4ca8e78ef5fe55d55
-  - enabled: 1
-    path: Assets/Scenes/UI/Volume.unity
-    guid: b534e023915987749b058899d953cafc
-  - enabled: 1
-    path: Assets/Scenes/UI/Credits.unity
-    guid: 91ad0b8e49e4e89488e94599cc8ff2e9
-  - enabled: 1
-    path: Assets/Scenes/UI/Save File.unity
-    guid: bed705ad1fb0e9244862ba5127d11579
-  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: de5564e7f9c3992479c3936f2e3c908a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/UI/Save File.unity
+    guid: bed705ad1fb0e9244862ba5127d11579
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
