@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
-using System.Security.Cryptography;
-using UnityEditor.PackageManager;
 
 public class PlayableCharacter : MonoBehaviour
 {
