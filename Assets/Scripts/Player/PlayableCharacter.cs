@@ -58,10 +58,10 @@ public class PlayableCharacter : MonoBehaviour
 
         anima = GetComponent<Animator>();
         cam = Camera.main;
-        if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
-        {
-            enabled = false;
-        }
+        //if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
+        //{
+        //    enabled = false;
+        //}
     }
     private void FixedUpdate()
     {
@@ -94,10 +94,10 @@ public class PlayableCharacter : MonoBehaviour
 
     void Update()
     {
-        if (generalInputs.PlayableCharacterInputs.Interact.triggered)
-        {
-            audioSource.PlayOneShot(interactSound);
-        }
+        //if (generalInputs.PlayableCharacterInputs.Interact.triggered)
+        //{
+        //    audioSource.PlayOneShot(interactSound);
+        //}
 
         /*if (generalInputs.Actions.SwitchingCameras.triggered)
         {

@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761947082092669344, guid: 1f620887792679340bf68691f418662b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.555
+      value: 239.77237
       objectReference: {fileID: 0}
     - target: {fileID: 1761947082092669344, guid: 1f620887792679340bf68691f418662b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.828
+      value: 26.542957
       objectReference: {fileID: 0}
     - target: {fileID: 1761947082092669344, guid: 1f620887792679340bf68691f418662b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3880783319278630322, guid: 1f620887792679340bf68691f418662b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ebdf3971bc9c24d4f9ebea87dedacf93, type: 2}
     - target: {fileID: 5216748244009345123, guid: 1f620887792679340bf68691f418662b, type: 3}
       propertyPath: m_Name
       value: Door Red
