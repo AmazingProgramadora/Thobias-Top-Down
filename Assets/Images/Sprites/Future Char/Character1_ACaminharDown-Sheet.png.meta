@@ -118,12 +118,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 2
-        width: 17
-        height: 38
+        x: 10
+        y: 1
+        width: 19
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,12 +139,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_1
       rect:
         serializedVersion: 2
-        x: 51
-        y: 1
-        width: 17
-        height: 39
+        x: 50
+        y: 0
+        width: 19
+        height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,12 +160,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_2
       rect:
         serializedVersion: 2
-        x: 91
+        x: 90
         y: 0
-        width: 17
-        height: 39
-      alignment: 9
-      pivot: {x: 0.5, y: 0.52}
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_3
       rect:
         serializedVersion: 2
-        x: 131
-        y: 1
-        width: 17
-        height: 39
+        x: 130
+        y: 0
+        width: 19
+        height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_4
       rect:
         serializedVersion: 2
-        x: 171
-        y: 2
-        width: 17
-        height: 38
+        x: 170
+        y: 1
+        width: 19
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,12 +223,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_5
       rect:
         serializedVersion: 2
-        x: 211
-        y: 1
-        width: 17
-        height: 39
+        x: 210
+        y: 0
+        width: 19
+        height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,12 +244,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_6
       rect:
         serializedVersion: 2
-        x: 251
+        x: 250
         y: 0
-        width: 17
-        height: 39
-      alignment: 9
-      pivot: {x: 0.5, y: 0.52}
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,12 +265,12 @@ TextureImporter:
       name: Character1_ACaminharDown-Sheet_7
       rect:
         serializedVersion: 2
-        x: 291
-        y: 1
-        width: 17
-        height: 39
+        x: 290
+        y: 0
+        width: 19
+        height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

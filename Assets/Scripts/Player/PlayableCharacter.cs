@@ -51,10 +51,11 @@ public class PlayableCharacter : MonoBehaviour
 
         anima = GetComponent<Animator>();
         cam = Camera.main;
-        //if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
-        //{
-        //    enabled = false;
-        //}
+
+        if (!ManagerPlayer.Instance.playerCharacters[ManagerPlayer.Instance.activePlayer].Equals(this))
+        {
+            enabled = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -99,19 +100,9 @@ public class PlayableCharacter : MonoBehaviour
 
         RangeGrab();
 
-        /*if (generalInputs.PlayableCharacterInputs.TakeDamage.WasReleasedThisFrame())
-        {
-            TakeDamage(20);
-        }*/
     }
     #endregion
 
-    /*public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        healthBar.SetHealth(currentHealth);
-    }*/
 
     #region Sound
     IEnumerator SFX()

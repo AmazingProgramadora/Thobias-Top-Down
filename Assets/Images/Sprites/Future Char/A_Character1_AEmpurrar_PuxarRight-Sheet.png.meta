@@ -136,10 +136,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 2
-        width: 19
-        height: 38
+        x: 8
+        y: 1
+        width: 21
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +157,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_1
       rect:
         serializedVersion: 2
-        x: 50
-        y: 2
-        width: 19
-        height: 38
+        x: 49
+        y: 1
+        width: 21
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_2
       rect:
         serializedVersion: 2
-        x: 91
-        y: 2
-        width: 19
-        height: 38
+        x: 90
+        y: 1
+        width: 21
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,10 +199,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_3
       rect:
         serializedVersion: 2
-        x: 131
-        y: 2
-        width: 20
-        height: 37
+        x: 130
+        y: 1
+        width: 22
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,10 +220,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_4
       rect:
         serializedVersion: 2
-        x: 173
-        y: 2
-        width: 19
-        height: 36
+        x: 172
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_5
       rect:
         serializedVersion: 2
-        x: 213
-        y: 2
-        width: 19
-        height: 36
+        x: 212
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_6
       rect:
         serializedVersion: 2
-        x: 253
-        y: 2
-        width: 19
-        height: 36
+        x: 252
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,10 +283,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_7
       rect:
         serializedVersion: 2
-        x: 293
-        y: 2
-        width: 19
-        height: 36
+        x: 292
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_8
       rect:
         serializedVersion: 2
-        x: 333
-        y: 2
-        width: 19
-        height: 36
+        x: 332
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,10 +325,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_9
       rect:
         serializedVersion: 2
-        x: 372
-        y: 2
-        width: 20
-        height: 36
+        x: 371
+        y: 1
+        width: 22
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,10 +346,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_10
       rect:
         serializedVersion: 2
-        x: 411
-        y: 2
-        width: 21
-        height: 36
+        x: 410
+        y: 1
+        width: 23
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,10 +367,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_11
       rect:
         serializedVersion: 2
-        x: 453
-        y: 2
-        width: 19
-        height: 36
+        x: 452
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -388,10 +388,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_12
       rect:
         serializedVersion: 2
-        x: 493
-        y: 2
-        width: 19
-        height: 36
+        x: 492
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,10 +409,10 @@ TextureImporter:
       name: A_Character1_AEmpurrar_PuxarRight-Sheet_13
       rect:
         serializedVersion: 2
-        x: 533
-        y: 2
-        width: 19
-        height: 36
+        x: 532
+        y: 1
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

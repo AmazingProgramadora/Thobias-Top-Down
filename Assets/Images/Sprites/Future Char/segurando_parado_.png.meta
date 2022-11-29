@@ -106,10 +106,10 @@ TextureImporter:
       name: segurando_parado__0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 10
-        width: 19
-        height: 36
+        x: 10
+        y: 9
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: segurando_parado__1
       rect:
         serializedVersion: 2
-        x: 58
-        y: 10
-        width: 19
-        height: 36
+        x: 57
+        y: 9
+        width: 21
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: segurando_parado__2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 10
-        width: 17
-        height: 30
+        x: 106
+        y: 9
+        width: 19
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: segurando_parado__3
       rect:
         serializedVersion: 2
-        x: 149
-        y: 10
-        width: 17
-        height: 30
+        x: 148
+        y: 9
+        width: 19
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
