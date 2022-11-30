@@ -15,6 +15,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<PlayableCharacter>().movementSpeed = 0;
+            DialogueManager.instance.GetPlayerScript(collision.gameObject.GetComponent<PlayableCharacter>());
             TriggerDialogue();
             Destroy(gameObject);
         }

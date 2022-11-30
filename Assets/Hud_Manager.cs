@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Hud_Manager : MonoBehaviour
 {
     public int numberKeys;
-    public GameObject keyHud1,keyHud2,keyHud3;
+    public Image keyHud1,keyHud2,keyHud3;
+
 
     public static Hud_Manager instance;
 
@@ -27,34 +28,52 @@ public class Hud_Manager : MonoBehaviour
 
         ShowKeys();
     }
+    public void GetCorrectSprite(Sprite keySprite)
+    {
+        switch (numberKeys) {
+
+            case 0:
+                keyHud1.sprite = keySprite;
+                break;
+            case 1:
+                keyHud2.sprite = keySprite;
+                break;
+            case 2:
+                keyHud3.sprite = keySprite;
+                break;
+        }
+
+    }
+
     private void ShowKeys()
     {
         //print(numberKeys);
         switch (numberKeys) {
-            case 0:
-                keyHud1.SetActive(false);
-                keyHud2.SetActive(false);
-                keyHud3.SetActive(false);
+            case 0:               
+                keyHud1.enabled = false;
+                keyHud2.enabled = false;
+                keyHud3.enabled = false;
                 break;
 
 
-            case 1:                
-                keyHud1.SetActive(true);
-                keyHud2.SetActive(false);
-                keyHud3.SetActive(false);
+            case 1:
+                //keyHud1.sprite = keySprite.sprite;
+                keyHud1.enabled = true;
+                keyHud2.enabled = false;
+                keyHud3.enabled = false;
                 break;
 
             case 2:
-                keyHud1.SetActive(true);
-                keyHud2.SetActive(true);
-                keyHud3.SetActive(false);
+                keyHud1.enabled = true;
+                keyHud2.enabled = true;
+                keyHud3.enabled = false;
 
                 break;
 
             case 3:
-                keyHud1.SetActive(true);
-                keyHud2.SetActive(true);
-                keyHud3.SetActive(true);
+                keyHud1.enabled = true;
+                keyHud2.enabled = true;
+                keyHud3.enabled = true;
 
                 break;
         }

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    PlayableCharacter playableCharacter1;
+
+    public static DialogueManager instance;
+
     public TextMeshProUGUI dialogueText;
     public GameObject dialoguePrefab;
 
@@ -14,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         sentences = new Queue<string>();
     }
 
@@ -55,5 +60,14 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         dialoguePrefab.SetActive(false);
+        ResumePlayer(playableCharacter1);
+    }
+    public void GetPlayerScript(PlayableCharacter playableCharacter)
+    {
+        playableCharacter1 = playableCharacter;
+    }
+    public void ResumePlayer(PlayableCharacter playableCharacter)
+    {
+        playableCharacter.movementSpeed = 5;
     }
 }

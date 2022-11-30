@@ -16,19 +16,9 @@ public class Key : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-
-            audioSource.Play();
-            door.OpenDoor();
-            Destroy(gameObject);
-        }
-    }*/
-
     public GameObject GetDoor()
     {
+        Hud_Manager.instance.GetCorrectSprite(gameObject.GetComponent<SpriteRenderer>().sprite);
         StartCoroutine(DestroyChave());
         return thisDoor;
     }

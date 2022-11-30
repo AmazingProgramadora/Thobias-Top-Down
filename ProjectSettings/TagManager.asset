@@ -9,6 +9,7 @@ TagManager:
   - Box
   - Key
   - TimeTransition
+  - Dialogue
   layers:
   - Default
   - TransparentFX

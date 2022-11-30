@@ -7,7 +7,6 @@ using Cinemachine;
 public class PlayableCharacter : MonoBehaviour
 {
 
-
     #region Variables
     [SerializeField]
     float rangeDistanceGrab, rangeHeightGrab;
@@ -190,6 +189,7 @@ public class PlayableCharacter : MonoBehaviour
         if (collision.CompareTag("Key"))
         {
             ManagerPlayer.Instance.keyList.Add(collision.gameObject.GetComponent<Key>().GetDoor());
+            
             Hud_Manager.instance.CheckKeys();
         }
         if (collision.CompareTag("TimeTransition"))
