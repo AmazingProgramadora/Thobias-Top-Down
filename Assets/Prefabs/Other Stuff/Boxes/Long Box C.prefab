@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5153899447146671214}
   - component: {fileID: 5153899447146671215}
   - component: {fileID: 5153899447146671208}
+  - component: {fileID: 2962719176067197873}
   m_Layer: 6
   m_Name: Long Box C
   m_TagString: Box
@@ -183,7 +184,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0.4579405, y: 0.00092315674}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,7 +210,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.02, y: -0.0026546717}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,6 +263,56 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -7.1623116, y: 2.3367963}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!66 &2962719176067197873
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5153899447146671210}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 5153899447146671214}
+    m_ColliderPaths:
+    - - X: 3914706
+        Y: -12600001
+      - X: 3914706
+        Y: 12552216
+      - X: -4275000
+        Y: 12551923
+      - X: -4274707
+        Y: -12600001
+  - m_Collider: {fileID: 5153899447146671213}
+    m_ColliderPaths:
+    - - X: 12466979
+        Y: -4168178
+      - X: 12466979
+        Y: 4184795
+      - X: -4224343
+        Y: 4184502
+      - X: -4224050
+        Y: -4168178
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.39144132, y: -1.2600001}
+      - {x: 0.3915, y: -0.4168178}
+      - {x: 1.2466979, y: -0.41678852}
+      - {x: 1.2466686, y: 0.4184795}
+      - {x: 0.3914706, y: 0.4184939}
+      - {x: 0.39144132, y: 1.2552216}
+      - {x: -0.4275, y: 1.2551631}
+      - {x: -0.42744142, y: -1.2600001}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &5153899448413324518
 GameObject:
   m_ObjectHideFlags: 0

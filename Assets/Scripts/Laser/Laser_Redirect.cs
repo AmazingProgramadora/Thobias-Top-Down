@@ -51,6 +51,7 @@ public class Laser_Redirect : MonoBehaviour
 
         Vector2 directiona = (position - origin).normalized;
         directiona=directiona.Snap();
+        //print(directiona);
 
         if (!shooting)
         {
@@ -109,10 +110,7 @@ public class Laser_Redirect : MonoBehaviour
                 laser_Redirect = null;
             }
         }
-        /*else if (hit.collider && hit.collider.CompareTag("Player"))
-        {
-           // player.TakeDamage(20);
-        }*/
+
     }
 
     void DrawRay(Vector2 startPos, Vector2 endPos)

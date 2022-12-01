@@ -10,6 +10,7 @@ public class Button : MonoBehaviour
     AudioSource audioSource;
     Door door;
     [SerializeField] GameObject thisDoor;
+    GameObject currentBox;
 
     void Awake()
     {
@@ -25,8 +26,9 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Box"))
+        if (collision.CompareTag("Box") && currentBox == null)
         {
+            currentBox = collision.gameObject;
             anima.SetBool("ButtonDownAnimator", true);
             audioSource.Play();
 
@@ -37,9 +39,9 @@ public class Button : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Box"))
+        if (collision.CompareTag("Box") && collision.gameObject == currentBox)
         {
-
+            currentBox = null;
             anima.SetBool("ButtonDownAnimator", false);
 
             if (door != null)

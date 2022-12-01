@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 6279299378069354251}
   - component: {fileID: 6279299378069354252}
   - component: {fileID: 6279299378069354253}
+  - component: {fileID: 6801836659934546020}
   m_Layer: 6
   m_Name: Long Box J
   m_TagString: Box
@@ -347,7 +348,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0.48, y: 0.00092315674}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,7 +374,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.02000001, y: 0.9352186}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,3 +427,53 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -7.1623116, y: 2.3367963}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!66 &6801836659934546020
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279299378069354255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 6279299378069354250}
+    m_ColliderPaths:
+    - - X: 12665515
+        Y: -4168178
+      - X: 12665515
+        Y: 4184795
+      - X: -4025808
+        Y: 4184502
+      - X: -4025515
+        Y: -4168178
+  - m_Collider: {fileID: 6279299378069354251}
+    m_ColliderPaths:
+    - - X: 3914706
+        Y: -4135888
+      - X: 3914706
+        Y: 20969822
+      - X: -4275000
+        Y: 20969529
+      - X: -4274707
+        Y: -4135888
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 1.2665222, y: -0.4168178}
+      - {x: 1.2665222, y: 0.4184795}
+      - {x: 0.3914706, y: 0.4184935}
+      - {x: 0.39144132, y: 2.0969822}
+      - {x: -0.4275, y: 2.0969236}
+      - {x: -0.42744142, y: -0.4135888}
+      - {x: -0.4025516, y: -0.4136182}
+      - {x: -0.4025222, y: -0.4168178}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
