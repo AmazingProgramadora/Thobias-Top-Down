@@ -19,7 +19,7 @@ public class EndGame : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             endTrigger = true;
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(0);//evite colocar string, coloque o índice (número) da Build
         }
 
     }

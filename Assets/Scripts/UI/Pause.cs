@@ -35,11 +35,11 @@ public class Pause : MonoBehaviour
             menuPanel.SetActive(false);
             endingCreditsPanel.SetActive(true);
             EndGame.endTrigger = false;
-
+        
         }
         if (pausePanel == null || endingCreditsPanel == null || menuPanel == null)
         {
-            return; //sai do metodo = funcao
+            return; //sai do metodo (funcao)
         }
     }
 
