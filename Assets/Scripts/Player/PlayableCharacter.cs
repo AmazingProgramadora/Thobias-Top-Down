@@ -14,7 +14,6 @@ public class PlayableCharacter : MonoBehaviour
     LayerMask layerMask;
     bool pushed = true;
     Camera cam;
-    Animator animator;
     GeneralInputs generalInputs;
     Rigidbody2D rdbd;
     Animator anima;
@@ -41,7 +40,6 @@ public class PlayableCharacter : MonoBehaviour
         generalInputs = new GeneralInputs();
         rdbd = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -247,12 +245,12 @@ public class PlayableCharacter : MonoBehaviour
                 GrabFunction();
 
             else
-                animator.SetBool("IsPushing", false);
+                anima.SetBool("IsPushing", false);
         }
 
         if (hit.collider == null)
         {
-            animator.SetBool("IsPushing", false);
+            anima.SetBool("IsPushing", false);
         }
 
     }

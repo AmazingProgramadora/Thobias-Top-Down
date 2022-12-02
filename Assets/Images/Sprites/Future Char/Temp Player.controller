@@ -81,7 +81,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: guture push tree
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: fa5211ca756e0fc42bd8e9ab7cac8139, type: 2}
@@ -162,7 +162,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Push
+  m_Name: Future Push
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -333,7 +333,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Future Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -359,7 +359,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Future walk tree
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 31105bf55432de94698365f6acf5f6d7, type: 2}
@@ -406,7 +406,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: future idle tree
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: b22e1c124c3b2024e8fc57a28b3c1add, type: 2}
@@ -573,7 +573,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: future idle push tree
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 828ad3e77f7a74c4b90a6c953b0409a2, type: 2}
@@ -671,7 +671,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walk
+  m_Name: Future Walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -924,7 +924,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle Push
+  m_Name: Future Idle Push
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
