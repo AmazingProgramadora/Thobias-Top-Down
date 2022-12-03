@@ -27,6 +27,7 @@ public class PlayableCharacter : MonoBehaviour
     AudioClip interactSound;
     Vector2 lastInput;
     private bool isGrabbing;
+    public Animator crossfadeAnimator;
     //public int maxHelath = 100;
     //public int currentHealth;
     // public HealthBar healthBar;
@@ -99,7 +100,6 @@ public class PlayableCharacter : MonoBehaviour
 
     }
     #endregion
-
 
     #region Sound
     IEnumerator SFX()
@@ -192,10 +192,17 @@ public class PlayableCharacter : MonoBehaviour
         }
         if (collision.CompareTag("TimeTransition"))
         {
-            ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
+            StartCoroutine(TransitionTimer());
         }
     }
     #endregion
+
+    IEnumerator TransitionTimer()
+    {
+        crossfadeAnimator.SetTrigger("StartCrossfade");
+        yield return new WaitForSeconds(1.2f);
+        ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
+    }
 
     #region Grab
     void MoveBox()
@@ -256,8 +263,5 @@ public class PlayableCharacter : MonoBehaviour
     }
 
     #endregion
-
-
-
 
 }

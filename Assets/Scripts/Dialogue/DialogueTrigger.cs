@@ -5,9 +5,11 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
+    public static bool EndCrossfadeDialogue = true;
 
     public void TriggerDialogue()
     {
+            EndCrossfadeDialogue = false;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 

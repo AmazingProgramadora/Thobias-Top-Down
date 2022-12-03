@@ -17,7 +17,6 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-
         if (generalInputs.Actions.Pause.triggered && pausePanel.activeSelf == false && Time.timeScale == 1f)
         {
             PauseFunction();

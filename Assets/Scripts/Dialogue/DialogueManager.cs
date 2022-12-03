@@ -40,6 +40,7 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             EndDialogue();
+            DialogueTrigger.EndCrossfadeDialogue = true;
             return;
         }
         string sentence = sentences.Dequeue();

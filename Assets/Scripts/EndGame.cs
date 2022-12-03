@@ -8,6 +8,8 @@ public class EndGame : MonoBehaviour
     public static bool endTrigger = false;
     public static EndGame instance;
 
+    public Animator crossfadeAnimator;
+
     private void Awake()
     {
         instance = this;
@@ -18,9 +20,16 @@ public class EndGame : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            endTrigger = true;
-            SceneManager.LoadScene(0);//evite colocar string, coloque o índice (número) da Build
+            StartCoroutine(TransitionCrossfade());
         }
 
+    }
+
+    IEnumerator TransitionCrossfade()
+    {
+        crossfadeAnimator.SetTrigger("StartCrossfade");
+        yield return new WaitForSeconds(1.2f);
+        endTrigger = true;
+        SceneManager.LoadScene(0);//evite colocar string, coloque o índice (número) da Build
     }
 }
