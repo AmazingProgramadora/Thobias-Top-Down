@@ -135,6 +135,7 @@ public class PlayableCharacter : MonoBehaviour
         vCam.enabled = true;
 
         novoPlayerAtivo.enabled = true;
+        CrossfadeTransition.instance.EnableTrigger();
         enabled = false;
 
         //essa parte conserta o bug de continuar andando quando troca de cameras

@@ -6369,6 +6369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossfade
       objectReference: {fileID: 0}
+    - target: {fileID: 7048916222841182741, guid: 33b7c4316b758d44caebb39a3ec39c1a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7048916223059833344, guid: 33b7c4316b758d44caebb39a3ec39c1a, type: 3}
       propertyPath: whenToAppear
       value: 0.2

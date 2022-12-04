@@ -7,9 +7,13 @@ public class CrossfadeTransition : MonoBehaviour
 {
     Animator anim;
     public float whenToAppear;
+    public GameObject futureTrigger;
+    public static CrossfadeTransition instance;
+    public GameObject avatarUI, avatarUIPast;
 
     private void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
     }
 
@@ -24,4 +28,12 @@ public class CrossfadeTransition : MonoBehaviour
         yield return new WaitForSeconds(whenToAppear);
         anim.SetTrigger("EndCrossfade");
     }
+
+    public void EnableTrigger()
+    {
+        futureTrigger.SetActive(true);
+        avatarUI.SetActive(true);
+        avatarUIPast.SetActive(false);
+    }
+
 }
