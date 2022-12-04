@@ -231,6 +231,15 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Continue"",
+                    ""type"": ""Button"",
+                    ""id"": ""454eeb4b-30ff-4730-ac2a-6b8e6c192184"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -255,6 +264,17 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0aafcbfa-5114-48c7-8bd3-8f61efb97e24"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_SwitchingCameras = m_Actions.FindAction("SwitchingCameras", throwIfNotFound: true);
         m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
+        m_Actions_Continue = m_Actions.FindAction("Continue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -389,12 +410,14 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
     private IActionsActions m_ActionsActionsCallbackInterface;
     private readonly InputAction m_Actions_SwitchingCameras;
     private readonly InputAction m_Actions_Pause;
+    private readonly InputAction m_Actions_Continue;
     public struct ActionsActions
     {
         private @GeneralInputs m_Wrapper;
         public ActionsActions(@GeneralInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @SwitchingCameras => m_Wrapper.m_Actions_SwitchingCameras;
         public InputAction @Pause => m_Wrapper.m_Actions_Pause;
+        public InputAction @Continue => m_Wrapper.m_Actions_Continue;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -410,6 +433,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
+                @Continue.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnContinue;
+                @Continue.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnContinue;
+                @Continue.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnContinue;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -420,6 +446,9 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Continue.started += instance.OnContinue;
+                @Continue.performed += instance.OnContinue;
+                @Continue.canceled += instance.OnContinue;
             }
         }
     }
@@ -435,5 +464,6 @@ public partial class @GeneralInputs : IInputActionCollection2, IDisposable
     {
         void OnSwitchingCameras(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnContinue(InputAction.CallbackContext context);
     }
 }

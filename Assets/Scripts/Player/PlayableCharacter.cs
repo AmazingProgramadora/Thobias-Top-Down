@@ -86,15 +86,8 @@ public class PlayableCharacter : MonoBehaviour
 
     void Update()
     {
-        //if (generalInputs.PlayableCharacterInputs.Interact.triggered)
-        //{
-        //    audioSource.PlayOneShot(interactSound);
-        //}
-
-        /*if (generalInputs.Actions.SwitchingCameras.triggered)
-        {
-            ChangePlayer(ManagerPlayer.Instance.GetInactivePlayerIndex());
-        }*/
+        if (generalInputs.Actions.Continue.WasPressedThisFrame())
+            DialogueManager.instance.DisplayNextSentence();
 
         RangeGrab();
 
